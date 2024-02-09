@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d255bf3xpj7uk"]
+
+[ext_resource type="PackedScene" uid="uid://b4qjwqpcn1y32" path="res://Scenes/Piece.tscn" id="1_1mbt4"]
+[ext_resource type="Texture2D" uid="uid://dplkbihmxltph" path="res://art/planets100/purple.png" id="2_dioer"]
+
+[node name="purple_piece" instance=ExtResource("1_1mbt4")]
+color = "pruple"
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1, 1)
+texture = ExtResource("2_dioer")

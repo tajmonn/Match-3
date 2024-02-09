@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://da5vi73gsgfk3"]
+
+[ext_resource type="PackedScene" uid="uid://c13u3toxiq0ax" path="res://Scenes/moon.tscn" id="1_64daa"]
+[ext_resource type="Texture2D" uid="uid://dh24uxp6gjjom" path="res://art/squares/barrier.png" id="2_2e7vm"]
+
+[node name="barrier" instance=ExtResource("1_64daa")]
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.223529, 1, 0.662745, 0.647059)
+scale = Vector2(0.595, 0.595)
+texture = ExtResource("2_2e7vm")

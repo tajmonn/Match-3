@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpkjrdb0o1do4"]
+
+[ext_resource type="Texture2D" uid="uid://h8g8uhbpt7uj" path="res://art/Space Background.png" id="1_8xp60"]
+[ext_resource type="Script" path="res://Scripts/moon_holder.gd" id="2_15sej"]
+[ext_resource type="Script" path="res://Scripts/grid.gd" id="2_ul15n"]
+[ext_resource type="Script" path="res://Scripts/barrier_holder.gd" id="4_igqhh"]
+
+[node name="game_window" type="Node2D"]
+
+[node name="background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_8xp60")
+
+[node name="moon_holder" type="Node2D" parent="."]
+script = ExtResource("2_15sej")
+
+[node name="grid" type="Node2D" parent="."]
+script = ExtResource("2_ul15n")
+width = 15
+height = 10
+x_start = 430
+y_start = 990
+offset = 100
+y_offset = 3
+empty_spaces = PackedVector2Array(6, 3, 6, 4, 6, 5, 7, 3, 7, 4, 7, 5, 8, 3, 8, 4, 8, 5)
+moon_spaces = PackedVector2Array(0, 0, 1, 0, 0, 1, 1, 1)
+barrier_spaces = PackedVector2Array(1, 1, 1, 2, 2, 1, 2, 2)
+
+[node name="barrier_holder" type="Node2D" parent="."]
+script = ExtResource("4_igqhh")
+
+[node name="destroy_timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="collapse_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="refill_timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="damage_barrier" from="grid" to="barrier_holder" method="_on_grid_damage_barrier"]
+[connection signal="damage_moon" from="grid" to="moon_holder" method="_on_grid_damage_moon"]
+[connection signal="make_barrier" from="grid" to="barrier_holder" method="_on_grid_make_barrier"]
+[connection signal="make_moon" from="grid" to="moon_holder" method="_on_grid_make_moon"]
+[connection signal="barrier_destroyed" from="barrier_holder" to="grid" method="_on_barrier_holder_barrier_destroyed"]
+[connection signal="timeout" from="destroy_timer" to="grid" method="_on_destroy_timer_timeout"]
+[connection signal="timeout" from="collapse_timer" to="grid" method="_on_collapse_timer_timeout"]
+[connection signal="timeout" from="refill_timer" to="grid" method="_on_refill_timer_timeout"]

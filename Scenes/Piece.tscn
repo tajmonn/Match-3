@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4qjwqpcn1y32"]
+
+[ext_resource type="Script" path="res://Scripts/Piece.gd" id="1_lbdh0"]
+
+[node name="piece" type="Node2D"]
+scale = Vector2(0.9, 0.9)
+script = ExtResource("1_lbdh0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
+scale = Vector2(0.5, 0.5)
