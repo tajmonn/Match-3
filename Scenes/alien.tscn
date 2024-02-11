@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0wwftqb3q714"]
+
+[ext_resource type="PackedScene" uid="uid://c13u3toxiq0ax" path="res://Scenes/moon.tscn" id="1_5l1wy"]
+[ext_resource type="Texture2D" uid="uid://c6i82ivxcaoe4" path="res://art/squares/alien.png" id="2_8itg4"]
+
+[node name="alien" instance=ExtResource("1_5l1wy")]
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_8itg4")

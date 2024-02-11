@@ -32,7 +32,7 @@ empty_spaces = PackedVector2Array(6, 3, 6, 4, 6, 5, 7, 3, 7, 4, 7, 5, 8, 3, 8, 4
 moon_spaces = PackedVector2Array(0, 0, 1, 0, 0, 1, 1, 1)
 barrier_spaces = PackedVector2Array(1, 1, 1, 2, 2, 1, 2, 2)
 asteroid_spaces = PackedVector2Array(2, 6, 2, 7, 3, 6, 3, 7)
-alien_spaces = PackedVector2Array(9, 9, 4, 4)
+alien_spaces = PackedVector2Array(9, 9)
 
 [node name="alien_holder" type="Node2D" parent="."]
 script = ExtResource("6_qth5a")

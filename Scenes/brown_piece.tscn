@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvhivw3ij1qj1"]
+[gd_scene load_steps=5 format=3 uid="uid://dvhivw3ij1qj1"]
 
 [ext_resource type="PackedScene" uid="uid://b4qjwqpcn1y32" path="res://Scenes/Piece.tscn" id="1_qxcps"]
 [ext_resource type="Texture2D" uid="uid://cf788pxeluvn" path="res://art/planets100/brown.png" id="2_kisy2"]
+[ext_resource type="Texture2D" uid="uid://dfiorgtc4l2j2" path="res://art/planets100/brown_row.png" id="2_uin2y"]
+[ext_resource type="Texture2D" uid="uid://bi5qt2ke43q4" path="res://art/planets100/brown_col.png" id="3_oq2yr"]
 
 [node name="brown_piece" instance=ExtResource("1_qxcps")]
 color = "brown"
+row_texture = ExtResource("2_uin2y")
+column_texture = ExtResource("3_oq2yr")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(1, 1)

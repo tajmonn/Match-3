@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dh24uxp6gjjom" path="res://art/squares/barrier.png" id="2_2e7vm"]
 
 [node name="barrier" instance=ExtResource("1_64daa")]
+health = 1
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(0.223529, 1, 0.662745, 0.647059)
