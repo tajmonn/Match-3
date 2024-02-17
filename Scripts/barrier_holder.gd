@@ -22,6 +22,8 @@ func make_2d_array():
 
 
 func _on_grid_damage_barrier(board_position):
+	if barrier_pieces.size() == 0:
+		return
 	if barrier_pieces[board_position.x][board_position.y] == null:
 		return
 	barrier_pieces[board_position.x][board_position.y].take_damage(1)

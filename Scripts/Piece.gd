@@ -9,9 +9,7 @@ var is_row_bomb = false
 var is_column_bomb = false
 var is_adjacent_bomb = false
 
-
 var matched = false
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

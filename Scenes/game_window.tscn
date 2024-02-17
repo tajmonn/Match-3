@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bmggpyxoyr0su" path="res://art/Space Background_black.png" id="1_leksf"]
 [ext_resource type="Script" path="res://Scripts/moon_holder.gd" id="2_15sej"]
+[ext_resource type="Texture2D" uid="uid://cvv2ai7x3f2tk" path="res://art/Box_Square.png" id="2_j6u7c"]
 [ext_resource type="Script" path="res://Scripts/grid.gd" id="2_ul15n"]
 [ext_resource type="Script" path="res://Scripts/asteroid_holder.gd" id="3_girpk"]
-[ext_resource type="Script" path="res://Scripts/barrier_holder.gd" id="4_igqhh"]
 [ext_resource type="Script" path="res://Scripts/alien_holder.gd" id="6_qth5a"]
 
 [node name="game_window" type="Node2D"]
@@ -13,6 +13,27 @@
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_leksf")
+
+[node name="top_ui" type="TextureRect" parent="."]
+offset_left = 34.0
+offset_top = 33.0
+offset_right = 356.0
+offset_bottom = 248.0
+size_flags_stretch_ratio = 0.78
+texture = ExtResource("2_j6u7c")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="top_ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="moon_holder" type="Node2D" parent="."]
 script = ExtResource("2_15sej")
@@ -28,17 +49,9 @@ x_start = 430
 y_start = 990
 offset = 100
 y_offset = 3
-empty_spaces = PackedVector2Array(6, 3, 6, 4, 6, 5, 7, 3, 7, 4, 7, 5, 8, 3, 8, 4, 8, 5)
-moon_spaces = PackedVector2Array(0, 0, 1, 0, 0, 1, 1, 1)
-barrier_spaces = PackedVector2Array(1, 1, 1, 2, 2, 1, 2, 2)
-asteroid_spaces = PackedVector2Array(2, 6, 2, 7, 3, 6, 3, 7)
-alien_spaces = PackedVector2Array(9, 9, 4, 4)
 
 [node name="alien_holder" type="Node2D" parent="."]
 script = ExtResource("6_qth5a")
-
-[node name="barrier_holder" type="Node2D" parent="."]
-script = ExtResource("4_igqhh")
 
 [node name="destroy_timer" type="Timer" parent="."]
 wait_time = 0.2
@@ -55,14 +68,11 @@ one_shot = true
 [connection signal="asteroid_destroyed" from="asteroid_holder" to="grid" method="_on_asteroid_holder_asteroid_destroyed"]
 [connection signal="damage_alien" from="grid" to="alien_holder" method="_on_grid_damage_alien"]
 [connection signal="damage_asteroid" from="grid" to="asteroid_holder" method="_on_grid_damage_asteroid"]
-[connection signal="damage_barrier" from="grid" to="barrier_holder" method="_on_grid_damage_barrier"]
 [connection signal="damage_moon" from="grid" to="moon_holder" method="_on_grid_damage_moon"]
 [connection signal="make_alien" from="grid" to="alien_holder" method="_on_grid_make_alien"]
 [connection signal="make_asteroid" from="grid" to="asteroid_holder" method="_on_grid_make_asteroid"]
-[connection signal="make_barrier" from="grid" to="barrier_holder" method="_on_grid_make_barrier"]
 [connection signal="make_moon" from="grid" to="moon_holder" method="_on_grid_make_moon"]
 [connection signal="alien_destroyed" from="alien_holder" to="grid" method="_on_alien_holder_alien_destroyed"]
-[connection signal="barrier_destroyed" from="barrier_holder" to="grid" method="_on_barrier_holder_barrier_destroyed"]
 [connection signal="timeout" from="destroy_timer" to="grid" method="_on_destroy_timer_timeout"]
 [connection signal="timeout" from="collapse_timer" to="grid" method="_on_collapse_timer_timeout"]
 [connection signal="timeout" from="refill_timer" to="grid" method="_on_refill_timer_timeout"]

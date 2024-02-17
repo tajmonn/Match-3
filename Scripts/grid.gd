@@ -403,8 +403,6 @@ func find_bombs():
 	for current_pos in current_matches:
 		if current_pos in used:
 			continue
-		var column_count = 1
-		var row_count = 1
 		
 		var new_used_u = look_in_direction(current_pos, Vector2(0,  1), used)
 		var new_used_d = look_in_direction(current_pos, Vector2(0, -1), used)
@@ -476,25 +474,35 @@ func change_bomb(bomb_type, piece):
 	elif bomb_type == "color":
 		print("MAKING COLOR BOMB")
 
-
 func match_all_in_column(column):
 	for row in height:
-		if all_pieces[column][row] != null:
+		if all_pieces[column][row] != null and !all_pieces[column][row].matched:
+			if all_pieces[column][row].is_row_bomb:
+				match_all_in_row(row)
+			if all_pieces[column][row].is_adjacent_bomb:
+				match_all_adjacent(Vector2(column, row))
 			all_pieces[column][row].matched = true
 
 func match_all_in_row(row):
 	for column in width:
-		if all_pieces[column][row] != null:
+		if all_pieces[column][row] != null and !all_pieces[column][row].matched:
+			if all_pieces[column][row].is_row_bomb:
+				match_all_in_column(column)
+			if all_pieces[column][row].is_adjacent_bomb:
+				match_all_adjacent(Vector2(column, row))
 			all_pieces[column][row].matched = true
 
 func match_all_adjacent(piece):
-	var neighbours = []
 	var directions = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1), Vector2(1, 1), Vector2(1, -1), Vector2(-1, -1), Vector2(-1, 1)]
 	for direction in directions:
 		if is_in_grid(piece + direction):
-			if all_pieces[piece.x + direction.x][piece.y + direction.y] != null:
+			if all_pieces[piece.x + direction.x][piece.y + direction.y] != null and !all_pieces[piece.x + direction.x][piece.y + direction.y].matched:
+				if all_pieces[piece.x + direction.x][piece.y + direction.y].is_row_bomb:
+					match_all_in_column(piece.x + direction.x)
+				if all_pieces[piece.x + direction.x][piece.y + direction.y].is_row_bomb:
+					match_all_in_row(piece.y + direction.y)
+				
 				all_pieces[piece.x + direction.x][piece.y + direction.y].matched = true
-
 
 func _input(event):
 	if state == MOVE: # move only when you have state move
@@ -509,7 +517,6 @@ func _input(event):
 			controlling = false
 			state = WAIT
 			click_diff(first_touch, final_touch)
-
 
 func _on_barrier_holder_barrier_destroyed(place):
 	remove_from_array(barrier_spaces, place)
